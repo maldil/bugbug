@@ -10,6 +10,7 @@ from datetime import datetime, timedelta, timezone
 
 import dateutil.parser
 import pandas as pd
+import numpy as np
 from dateutil import parser
 from libmozdata import versions
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -402,7 +403,7 @@ class commit_author_experience(single_bug_feature):
             for commit in bug["commits"]
             if not commit["backedoutby"]
         ]
-        return sum(res) / len(res)
+        return np.mean(res)
 
 
 class commit_author_experience_90_days(single_bug_feature):
@@ -412,7 +413,7 @@ class commit_author_experience_90_days(single_bug_feature):
             for commit in bug["commits"]
             if not commit["backedoutby"]
         ]
-        return sum(res) / len(res)
+        return np.mean(res)
 
 
 class commit_reviewer_experience(single_bug_feature):
@@ -422,7 +423,7 @@ class commit_reviewer_experience(single_bug_feature):
             for commit in bug["commits"]
             if not commit["backedoutby"]
         ]
-        return sum(res) / len(res)
+        return np.mean(res)
 
 
 class commit_reviewer_experience_90_days(single_bug_feature):
@@ -432,7 +433,7 @@ class commit_reviewer_experience_90_days(single_bug_feature):
             for commit in bug["commits"]
             if not commit["backedoutby"]
         ]
-        return sum(res) / len(res)
+        return np.mean(res)
 
 
 class commit_no_of_backouts(single_bug_feature):
